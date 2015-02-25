@@ -1,7 +1,9 @@
 *
 {
 	margin: 0;
+	text-decoration: none;
 }
+
 
 body
 {
@@ -13,7 +15,7 @@ header
 	height: 90px;
 	margin-right: auto;
 	margin-left: auto;
-	margin-bottom: 35px;
+	margin-bottom: 70px;
 	background-color: white;
 }
 
@@ -128,25 +130,23 @@ aside
 	position: relative;
 	float: left;
 	background-color: white;
+	text-align: center;
 }
 
 aside h1
 {
 	margin-bottom: 20px;
 	padding-top: 10px;
-	padding-left: 10px;
+
 }
 
 aside li
 {
 	padding-bottom: 15px;
+	padding-right: 50px;
 	list-style-type: none;
 }
 
-aside ul
-{
-	padding-left: 15px;
-}
 
 .menu
 {
@@ -159,7 +159,6 @@ aside ul
 	background-image: url("img/fondBtn.png");
 	width: 140px;
 	height: 51px;
-	float: right;
 	margin-top: 20px;
 	margin-bottom: 10px;
 	margin-right: 10px;
