@@ -1,14 +1,18 @@
 <?php
-try
-{
-	$bdd = new PDO('mysql:host=localhost;dbname=forum', 'root', '');
-	$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
+define("NAMEDB",     "mysql:host=localhost;dbname=forum");
+define("IDENTIFIANTDB",     "root");
+define("MDPDB",     "");
 
-catch (Exception $e)
-{
-	die('Erreur : ' . $e->getMessage());	
-}
+ try
+ {
+    $bdd = new PDO(NAMEDB, IDENTIFIANTDB, MDPDB);
+    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+ }
+
+ catch (Exception $e)
+ {
+        die('Erreur : ' . $e->getMessage());
+ }
 
 if(isset($_POST['biliet']))
 {
