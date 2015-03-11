@@ -1,4 +1,14 @@
 <?php
+try
+{
+	$bdd = new PDO('mysql:host=localhost;dbname=forum', 'root', '');
+	$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+
+catch (Exception $e)
+{
+	die('Erreur : ' . $e->getMessage());	
+}
 
 if(isset($_POST['biliet']))
 {
@@ -64,12 +74,12 @@ if(isset($_POST['mdp']))
 				if ($count == 1)
 					{
 					echo 'pseudo deja utilise';
-					?> <a href="http://localhost/talk/testlog.php">retour a la page d'enregistrement</a><?php
+					?> <a href="http://localhost/talk/register.php">retour a la page d'enregistrement</a><?php
 					}
 				else
 				{
 					echo 'adresse mail déjà utilise';
-					?> <a href="http://localhost/talk/testlog.php">retour a la page d'enregistrement</a><?php
+					?> <a href="http://localhost/talk/register.php">retour a la page d'enregistrement</a><?php
 				}
 		}
 		$req->closeCursor();
@@ -116,5 +126,7 @@ if(isset($_POST['suppression']))
 {
 	$req = $bdd->prepare('DELETE FROM posts WHERE ID = ?');
 	$req->execute(array($_POST['suppression']));
+
+
 
 }

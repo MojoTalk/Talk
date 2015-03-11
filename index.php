@@ -2,7 +2,7 @@
 session_start();
 if (isset($_GET['deco']))
 {
-	if ($_GET['deco']==1) # le Get deco vien du lien générer en cliquant sur le "sign out" un peu plus bas
+	if ($_GET['deco']==1)
 		{
 			session_destroy();
 			$_SESSION =array();
@@ -13,22 +13,10 @@ if (isset($_GET['deco']))
 }
 
 
-
- try
- {
-    $bdd = new PDO('mysql:host=localhost;dbname=forum', 'root', '');
-    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
- }
-
- catch (Exception $e)
- {
-        die('Erreur : ' . $e->getMessage());
- }
  // verificaiton de la nécéssité de la page cible.php
- if(isset($_POST['biliet'])||isset($_POST['nomtopic'])||isset($_POST['pseudoc'])||isset($_POST['suppression'])) 
- 	{
+
  	include("cible.php");
- 	}
+
  ?>
 <html>
 <head>
@@ -43,26 +31,22 @@ if (isset($_GET['deco']))
 
 	<header>
 		<img class="pic" src="img/pic.png">
-		<?php 
-		
-		if(isset($_SESSION['id'])) { # En-Tête si connecté
-
-		?> 
+		<?php if(isset($_SESSION['id'])) {?>
 		<div class="headerText">
 		<h1>
-			<p>Bienvenue <?php echo $_SESSION['pseudo']; ?></p> <!-- affiche le nom de la personne via la session qui récupère le pseudo -->
+			<p>Bienvenue <?php echo $_SESSION['pseudo']; ?></p>
 			</h1>
 		</div>
 
-		<div class="headerButton">
-			<a href=""><img src="img/gears.png"></a>		
-			<a href="http://localhost/talk/index.php?&deco=1">Sign out</a> <!-- déconneciton (casse la session grace au get[deco]) -->
+		<div class="headerSO">		
+			<a href="http://localhost/talk/index.php?&deco=1"> Sign&nbspout </a>
 		</div>
+		<img src="img/gears.png" class="gears">
 		
 		<?php 
 		}
 		
-		else // En-Tête si non connecté
+		else 
 		{
 
 		?>
@@ -72,9 +56,11 @@ if (isset($_GET['deco']))
 		</div>
 
 			<div class="headerButton">
-				<a href=""><img src="img/gears.png"></a>			
-				<a href="http://localhost/talk/testlog.php">Register Now    </a>
-				<a href="http://localhost/talk/connection.php"> Connection </a>
+			<img src="img/gears.png" class="gears">
+				<ul>
+					<li><a href="http://localhost/talk/register.php">Register Now </a></li>
+					<li><a href="http://localhost/talk/connection.php"> Connection </a></li>
+				</ul>
 			</div>
 		
 			<?php
