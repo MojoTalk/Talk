@@ -122,3 +122,10 @@ if(isset($_POST['mdpc']))
 	}
 	$req->closeCursor();
 }
+if(isset($_POST['suppression']))
+{
+	$req = $bdd->prepare('DELETE FROM posts WHERE ID = ?');
+	$req->execute(array($_POST['suppression']));
+
+
+}

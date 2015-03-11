@@ -2,7 +2,7 @@
 session_start();
 if (isset($_GET['deco']))
 {
-	if ($_GET['deco']==1)
+	if ($_GET['deco']==1) # le Get deco vien du lien générer en cliquant sur le "sign out" un peu plus bas
 		{
 			session_destroy();
 			$_SESSION =array();
@@ -43,42 +43,55 @@ if (isset($_GET['deco']))
 
 	<header>
 		<img class="pic" src="img/pic.png">
+		<?php 
+		
+		if(isset($_SESSION['id'])) { # En-Tête si connecté
+
+		?> 
+		<div class="headerText">
+		<h1>
+			<p>Bienvenue <?php echo $_SESSION['pseudo']; ?></p> <!-- affiche le nom de la personne via la session qui récupère le pseudo -->
+			</h1>
+		</div>
+
+		<div class="headerButton">
+			<a href=""><img src="img/gears.png"></a>		
+			<a href="http://localhost/talk/index.php?&deco=1">Sign out</a> <!-- déconneciton (casse la session grace au get[deco]) -->
+		</div>
+		
+		<?php 
+		}
+		
+		else // En-Tête si non connecté
+		{
+
+		?>
+
 		<div class="headerText">
 			<h1>Welcome in Talk</h1>
-			<h2>Mothafucka</h2>
 		</div>
-		<?php 
-		if (isset($_SESSION['id']) AND isset($_SESSION['pseudo'])){ // verification de l'existence d'informations de session
-			?>
+
 			<div class="headerButton">
-			<a href=""><img src="img/gears.png"></a>
-			<p>Bienvenue <?php echo $_SESSION['pseudo']; ?></p>			
-			<a href="http://localhost/talk/index.php?&deco=1">Sign out</a>
-		</div>		
-			<?php
-			}
-		else // si non connecté 
-			{ 
-			?>
-				<div class="headerButton">
 				<a href=""><img src="img/gears.png"></a>			
 				<a href="http://localhost/talk/testlog.php">Register Now    </a>
-				<a href="http://localhost/talk/connection.php">     Connection </a>
-
-				</div>
+				<a href="http://localhost/talk/connection.php"> Connection </a>
+			</div>
 		
 			<?php
-			}
+		}
+
 			?>
 		
 
 
 	</header>
-
-	<div class="part2">
+										<!-- Affichage des topic -->
+	
+	<div class="part2"> 
 		
-		<aside>
-			<h1>Discussions récentes <!-- <?php #echo $_GET['t']?> --></h1>
+		<aside> 
+			<h1>Discussions récentes </h1>
+			<div style="max-height: 300px; overflow: auto; margin: auto;">
 			<ul>
 				<?php
 					$reponse = $bdd -> query('SELECT nom FROM topic ORDER BY id DESC LIMIT 0, 10');
@@ -96,7 +109,8 @@ if (isset($_GET['deco']))
 				?>
 
 			</ul>
-			<?php if (isset($_SESSION['pseudo'])){?>
+			</div>
+			<?php if (isset($_SESSION['pseudo'])){?> <!-- vérification de session pour permettre la création de topic -->
 			<form action="http://localhost/talk/index.php?topic=<?php echo$donees['nom']?>&page=1" method="post">
 				<input name="nomtopic" placeholder="nom topic" type="text">
 				<input class="ajouter" type="submit" value="   ">
@@ -104,45 +118,35 @@ if (isset($_GET['deco']))
 			<?php } ?>
 		</aside>
 
-	<?php if(isset($_GET['topic']))
+	<?php 
+		if(isset($_GET['topic']))
 		{
-		?>
-		<!--Ci-dessous emplacement des posts -->
+	?>
+<!-- - - - - - - - - - - - - - - - - -Ci-dessous emplacement des posts - - - - - - - - - - - - - - - - - - -->
 		<section>
 			<div class="update">
 				<h2><?php echo $_GET['topic'], " (",$_GET['page'],")" ?></h2>
-				<img src="img/pen.png">
-				<img src="img/cancel.png">
+				<div class="image">
+					<img src="img/pen.png">
+					<img src="img/cancel.png">
+				</div>
 			</div>	
 
 				<!--Ci-dessous affichage des post depuis/vers la base de donné forum/post affichage des 5 derniers posts -->
 					<?php
-				$reponse -> closeCursor();
-				$reponse =$bdd -> query('SELECT biliet, topic FROM posts ORDER BY -id ');
- 				$nb_biliet = 0;
- 				$nb_page=0;
- 				while ($donees = $reponse -> fetch())
- 				
- 				{
- 					if ($_GET['topic'] == $donees['topic'])
- 					{
- 						$nb_biliet ++;
-
- 					}
-
- 					
- 				}
- 				$nb_page = $nb_biliet / 5;
-
  				$reponse -> closeCursor();
-				$reponse =$bdd -> query('SELECT biliet, topic, nomp FROM posts ORDER BY -id ');
+				$reponse =$bdd -> prepare('SELECT biliet, topic, nomp, dates, ID FROM posts WHERE topic = ? ORDER BY id ');
+				$reponse->execute(array($_GET['topic']));
+				$count = $reponse->rowCount();
+				$nb_page = $count / 5;
  				$inc = 0;
  				$aff = 0;
 
- 				while (($donees = $reponse -> fetch()) and ($aff < 5))
+ 				while (($donees = $reponse -> fetch()) and ($aff < 5)) #on s'assure que l'on affiche que 5 posts maximum par pages
  				
 				{
-					if (($_GET['topic'] == $donees['topic']) AND ($inc >= ($_GET['page']-1)*5))
+
+					if ($inc >= ($_GET['page']-1)*5)
 						
 						
 							
@@ -150,9 +154,23 @@ if (isset($_GET['deco']))
 						<article>
 						<div class="partie1">
 							<img src="img/pic2.png">
-							<p><?php echo $donees['nomp'];?></p>
-
-							<p>heure </p>
+							<p><?php echo $donees['nomp'];?></p>    <!-- affichage des donnes de posts (message, nom, date) -->
+							<p><?php echo $donees['dates'];?> </p>	
+							<?php 
+							if (isset($_SESSION['pseudo'])) 
+							{
+								if ($donees['nomp']==$_SESSION['pseudo']) 
+								{
+								?>
+								<form action="http://localhost/talk/index.php?topic=<?php echo($_GET['topic'])?>&page=1" method="post">
+								<input type="hidden" name="suppression" value="<?php echo $donees['ID'];?>">
+								<?php echo $donees['ID']; ?>
+								<input type="submit" value="supprimer" >
+								</form>	
+								<?php
+								}
+							}
+							?>
 						</div>
 						<div class="partie2">
 
@@ -166,15 +184,17 @@ if (isset($_GET['deco']))
 						
 						 
 					}
-					else if ($_GET['topic'] == $donees['topic']) {$inc++;} // incrémentation pour chaque billet apartenant au topic
+					else {$inc++;} // incrémentation pour chaque billet apartenant au topic
 					
 				}?>
 
-				<!-- ajout des post -->
+													<!-- ajout des post -->
+
+
 			<article>
 			<?php if (isset($_SESSION['pseudo']))
 			{ ?>
-									<form action="http://localhost/talk/index.php?topic=<?php echo($_GET['topic'])?>&page=1" method="post">
+					<form action="http://localhost/talk/index.php?topic=<?php echo($_GET['topic'])?>&page=1" method="post">
 						<textarea name="biliet" rows="10" placeholder="Write here..." type="text"></textarea>
 						<input class="btn"  type="submit" value="Submit">
 					</form>
@@ -185,20 +205,33 @@ if (isset($_GET['deco']))
 				<?php 
 				$page = 1;
 				while ($nb_page >0) 
-				{ 
-					 ?>
-
-				<a href="http://localhost/talk/index.php?topic=<?php echo($_GET['topic'])?>&page=<?php echo($page)?>"> 
+				{ ?>
+ 
+			<a href="http://localhost/talk/index.php?topic=<?php echo($_GET['topic'])?>&page=<?php echo($page)?>"> 
 				<?php echo($page),'/'?>  
-				</a>
+			</a>
+				
 				<?php
 				$nb_page -- ;
 				$page++;
+
 				} ?>
 
 			</article>	
 		</section>
 	<?php $reponse -> closeCursor();
+	}
+
+	else
+	{
+	?>
+		<section class="poster">
+			<div>
+				<img class="minions" src="url.jpg">
+				<p>Choisissez un des topic à votre gauche </p>
+			</div>
+		</section>
+	<?php	
 	}
 	?>
 
