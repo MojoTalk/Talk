@@ -16,7 +16,7 @@ if (isset($_GET['deco']))
  // verificaiton de la nécéssité de la page cible.php
 
  	include("cible.php");
-
+ 
  ?>
 <html>
 <head>
