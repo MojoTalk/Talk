@@ -25,7 +25,7 @@ if (isset($_GET['deco']))
         die('Erreur : ' . $e->getMessage());
  }
  // verificaiton de la nécéssité de la page cible.php
- if(isset($_POST['biliet'])||isset($_POST['nomtopic'])||isset($_POST['pseudoc'])) 
+ if(isset($_POST['biliet'])||isset($_POST['nomtopic'])||isset($_POST['pseudoc'])||isset($_POST['suppression'])) 
  	{
  	include("cible.php");
  	}
@@ -164,7 +164,6 @@ if (isset($_GET['deco']))
 								?>
 								<form action="http://localhost/talk/index.php?topic=<?php echo($_GET['topic'])?>&page=1" method="post">
 								<input type="hidden" name="suppression" value="<?php echo $donees['ID'];?>">
-								<?php echo $donees['ID']; ?>
 								<input type="submit" value="supprimer" >
 								</form>	
 								<?php

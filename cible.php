@@ -1,14 +1,4 @@
 <?php
-try
-{
-	$bdd = new PDO('mysql:host=localhost;dbname=forum', 'root', '');
-	$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-
-catch (Exception $e)
-{
-	die('Erreur : ' . $e->getMessage());	
-}
 
 if(isset($_POST['biliet']))
 {
@@ -126,6 +116,5 @@ if(isset($_POST['suppression']))
 {
 	$req = $bdd->prepare('DELETE FROM posts WHERE ID = ?');
 	$req->execute(array($_POST['suppression']));
-
 
 }
