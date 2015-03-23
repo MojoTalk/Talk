@@ -1,3 +1,6 @@
+
+/*_________________________________________________________Element influant sur l'ensemble des pages ____________________________________________________*/
+
 *,*:before,*:after{box-sizing: border-box;}
 
 
@@ -5,6 +8,10 @@
 {
 	margin: 0;
 	text-decoration: none;
+}
+a:hover
+{
+	color: red;
 }
 
 
@@ -14,14 +21,14 @@ body
 	padding-top: 20px;
 
 }
-
+/*_____________________________________________________________Partie Header____________________________________________________________________________________*/
 header
 {
 	position: relative;
 	height: 90px;
 	margin-right: auto;
 	margin-left: auto;
-	margin-bottom: 70px;
+	margin-bottom: 30px;
 	background-color: white;
 	border-radius: 10px;
 	border: 2px solid #0EC801;
@@ -39,33 +46,60 @@ header
 {
 	position: absolute;
 	padding-left: 600px;
-	padding-top: 25px;
-	top: 0;
+	padding-top: 12px;
+	top: 0px;
 }
-
-.headerSO
-{
-	position: absolute;
-	width: 70px;
-	padding-left: 700px;
-	padding-top: 35px;
-	top: 0;
-	z-index: 1;
-}
-
-.gears
-{
-	position: absolute;
-	top: 0;
-	right: 125;
-	padding-top: 25px;
-}
-
+ 
+ 
 .headerButton li
 {
 	list-style-type: none;
 }
 
+
+.headerSO
+{
+	position: absolute;
+	width: 70px;
+	right: 40px;
+	padding-top: 25px;
+	top: 0px;
+	z-index: 1;
+}
+/* _______________________________________________gears = ecrou simple / gearsAd ecrou lorsque l'on est connecter en tant qu'administrateur_________________________________________  */
+.gears
+{
+	position: absolute;
+	top: 20px;
+	right: 125px;
+}
+
+.gearsAd
+{
+
+	-webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    -o-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+     
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+     
+    overflow:hidden;
+	position: absolute;
+	top: 20px;
+	right: 125px;
+}
+.gearsAD:hover  
+{
+    -webkit-transform:rotate(360deg);
+    -moz-transform:rotate(360deg);
+    -o-transform:rotate(360deg);
+}
+
+/*______________________________________________________________________________________________________________________________________________________________________________________*/
 
 header .pic 
 {
@@ -103,8 +137,202 @@ article
 
 .partie1
 {
+	position: relative;
 	padding-bottom: 10px;
 }
+.topic
+{
+	position: relative;
+}
+.editer /*btn Modificaiton de posts*/
+{
+	position: absolute;
+	right: 50px;
+	top: 21.5px;
+	border-radius: 50%;
+	width: 22px;
+	height: 22px;
+
+}
+.editer:hover
+{
+	
+	border-radius: 50%;
+	width: 25px;
+	height: 25px;
+
+}
+.suppression /*btnsuppression posts*/
+{
+	position: absolute;
+	right: 10px;
+	top: 20px;
+	border-radius: 50%;
+	width: 25px;
+	height: 25px;
+}
+.suppression:hover
+{
+	
+	border-radius: 50%;
+	width: 28px;
+	height: 28px;
+}
+.suppressionT /*btnsuppression topic*/
+{
+	background-repeat: no-repeat;
+	position: absolute;
+	border-radius: 50%;
+	width: 25px;
+	height: 25px;
+	right: -25px;
+	bottom: 0px;
+}
+.suppressionT:hover
+{
+
+	background-repeat: no-repeat;
+	position: absolute;
+	border-radius: 50%;
+	width: 27px;
+	height: 27px;
+}
+
+/*______________________________________________________________Utile sur la page "listemembre uniquement"______________________________________________________*/
+
+.suppressionLogs
+{
+	position: relative;
+}
+.suppressionLogsBdy
+{
+	padding-right: 500px;
+	padding-top: 130px;
+}
+.suppressionLogs h1
+{
+	text-align: center;
+}
+.suppressionLogs li
+{
+	border-radius: 10px;
+	background-color: #f0f8ff;
+	list-style-type: none;
+	margin-right: 30px;
+	padding-left: 30px;
+	padding-bottom: 10px;
+}
+.suppressionLogsBtn
+{
+	background-repeat: no-repeat;
+	position: absolute;
+	border-radius: 50%;
+	width: 25px;
+	height: 25px;
+	right: 35px;
+	top: 18px;
+}
+.suppressionLogsBtn:hover
+{
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	width: 27px;
+	height: 27px;
+}
+.assignAdmin
+{
+	background-repeat: no-repeat;
+	position: absolute;
+	border-radius: 50%;
+	width: 22px;
+	height: 22px;
+	right: 36.5px;
+	top: 50px;
+}
+.assignAdmin:hover
+{
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	width: 24px;
+	height: 24px;	
+}
+.unAssignAdmin
+{
+	background-repeat: no-repeat;
+	position: absolute;
+	border-radius: 50%;
+	width: 25px;
+	height: 25px;
+	right: 35px;
+	top: 50px;
+}
+.unAssignAdmin:hover
+{
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	width: 27px;
+	height: 27px;	
+}
+.annonce
+{
+	text-align: center;
+	color: red;
+	padding-top: 5px;
+}
+
+.logs /*_____________________influe sur l'affichage des informations relative aux personnes enregistré sur la page "listemembre.php" ______________________________________*/
+{
+	position: relative;
+	margin-top: 15px;
+	padding-top: 10px;
+
+
+}
+/*_______________________________________________ boutons retour des pas listemembre / connexion / register______________________________________________________________*/
+.retourTxt
+{
+	position: absolute;
+	bottom: 12px;
+	right: 51px;
+	font-size: 12px;
+
+}
+.retour
+{
+	position: absolute;
+	bottom: 0px;
+	right: 6px;
+	width: 35px;
+	height: 35px;
+}
+.retour:hover
+{
+	width: 40px;
+	height: 40px;
+}
+.sect .retourTxt
+{
+	position: absolute;
+	bottom: 12px;
+	left: 51px;
+	font-size: 12px;
+
+}
+.sect .retour
+{
+	position: absolute;
+	bottom: 0px;
+	left: 6px;
+	font-size: 10px;
+	width: 35px;
+	height: 35px;
+}
+.sect .retour:hover
+{
+	width: 40px;
+	height: 40px;
+}
+/*_______________________________________________________________________________________________________________________________________________________________________*/
 
 .partie1 img
 {
@@ -125,6 +353,7 @@ article
 	padding-top: 5px;
 }
 
+
 article textarea
 {
 	width: 100%;
@@ -143,26 +372,11 @@ article textarea
 	border-radius: 10px;
 }
 
-.image
-{
-	position: absolute;
-	padding-bottom: 50px;
-	top: 10px;
-	right: 20px;
-
-
-}
-
-.update img
-{
-	padding-left: 15px;
-}
 
 .update h2
 {
-	display: inline-block;
-	padding-left: 5px;
-	margin-right: 180px;
+	padding-left: 10px;
+	padding-top: 7px;
 }
 
 
@@ -184,7 +398,7 @@ aside
 
 aside h1
 {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	padding-top: 10px;
 
 }
@@ -195,6 +409,10 @@ aside li
 	padding-right: 50px;
 	list-style-type: none;
 }
+aside ul
+{
+	padding-top: 10px;
+}
 
 
 .menu
@@ -202,16 +420,27 @@ aside li
 	float: right;
 
 }
-
+.ajouterParent
+{
+	position: relative;
+}
 .ajouter
 {
-	background-image: url("img/fondBtn.png");
-	width: 140px;
-	height: 51px;
-	margin-top: 20px;
-	margin-bottom: 10px;
-	margin-right: 10px;
+	position: absolute;
+	background-repeat: no-repeat;
+	width: 20px;
+	height: 20px;
+	right: 28px;
+	bottom: 0px;
 }
+.ajouter:hover
+{
+	width: 22px;
+	height: 22px;
+
+}
+
+/*___________________________________________________________ .btn -----> Bouton submit et edit des Posts _______________________________________________________*/
 
 
 .btn {
@@ -242,7 +471,7 @@ aside li
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
 }
-/*____________________________________________________________*/
+/*_________________________________________________________________Poster affiher sur l'acceuil_____________________________________________________________*/
 .minions
 {
 	width: 81.25%;
@@ -272,7 +501,16 @@ aside li
 	font-size: 25px;
 	right: 50px;
 }
-/*__________________________________________________*/
+.topicUtilise
+ {
+ 	padding-left: 0px;
+ 	color: red;
+ 	width: 900px;
+ 	text-align: center;
+ }
+/*_______________________________________________________Utilisé dans les pages d'enregistrement et de connection_____________________________________________*/
+
+
 .body{
 	max-width: 1000px;
 	margin-right: auto;
@@ -324,4 +562,67 @@ aside li
 	position: absolute;
 	bottom: 5px;
 	right: 5px;
+}
+.erreurMdp /*___________________________________________________________________Texte si mauvais Identifiants________________________________________________*/
+{
+	font-size: 20px;
+	color: red;
+	padding-bottom: 20px; 
+	margin-top: -20px;
+}
+.enregistre /*_______________________________________________ Texte validant linscription se trouve sur la page de conneciton __________________________________*/
+{
+	padding-bottom: 20px;
+	margin-top: -20px; 
+}
+.sect p.tropCourt /*_______________________________________Tout les textes de rapport d'erreur/fautes d'enregistrement sur la page register_______________________*/
+{
+	color: red;
+	text-align: center;
+}
+
+/*recherche*/
+.posterRech
+{
+	position: relative;
+	text-align: center;
+}
+.recherche
+{
+	position: absolute;
+	bottom: -70px;
+	background-color: white;
+	border-radius: 10px;
+	border: solid 2px #0EC801;
+	width: 290px;
+	height: 35px;
+	padding-bottom: 30px;
+}
+.rechercheBtn
+{
+
+	position: absolute;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	right: -55px;
+	bottom: -4px;
+}
+.rechercheForm
+{
+	position: absolute;
+	bottom: 5px;
+	left: 5px;
+}
+.topicRech
+{
+	
+}
+.resultatRech
+{
+}
+.topicTrouve
+{
+	padding-top: 50px;
 }
