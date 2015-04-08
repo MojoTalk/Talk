@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 if (isset($_SESSION['pseudo'])) {
@@ -15,11 +16,14 @@ if (isset($_GET['deco']))
 }
 
 
+
  ?>
+
 <html>
 <head>
 	<title>Talk</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	<meta charset="utf-8"></meta>
 </head>
 
@@ -55,14 +59,14 @@ if (isset($_GET['deco']))
 			</div>
 
 			<div class="headerSO">		
-				<a href="http://localhost/Talk/index.php?&deco=1"> <?php echo $seDeconnecter ?> </a>
-				<a href="http://localhost/Talk/index.php"><?php echo $accueil ?></a>
+				<a href="index.php?&deco=1"> <?php echo $seDeconnecter ?> </a>
+				<a href="index.php"><?php echo $accueil ?></a>
 			</div>
 			<?php
 			if ($_SESSION['administrateur'] > 0)
 				{
 				?>
-					<a href="http://localhost/Talk/listemembre.php"><img src="img/gears.png" class="gearsAd"></a>
+					<a href="listemembre.php"><img src="img/gears.png" class="gearsAd"></a>
 				<?php 
 				}
 			else
@@ -83,9 +87,9 @@ if (isset($_GET['deco']))
 			<div class="headerButton">
 			<img src="img/gears.png" class="gears">
 				<ul>
-					<li><a href="http://localhost/Talk/register.php"><?php echo $senregistrer ?> </a></li>
-					<li><a href="http://localhost/Talk/connexion.php"> <?php echo $connexion ?> </a></li>
-					<li><a href="http://localhost/Talk/index.php"><?php echo $accueil ?></a></li>
+					<li><a href="register.php"><?php echo $senregistrer ?> </a></li>
+					<li><a href="connexion.php"> <?php echo $connexion ?> </a></li>
+					<li><a href="index.php"><?php echo $accueil ?></a></li>
 				</ul>
 			</div>
 		
@@ -112,7 +116,7 @@ if (isset($_GET['deco']))
 	 				?>
 					<li>
 						<div class="topic"> 
-							<a href="http://localhost/Talk/index.php?topic=<?php echo$donees['nom']?>&page=1">
+							<a href="index.php?topic=<?php echo$donees['nom']?>&page=1">
 								<?php echo$donees['nom']?>
 							</a>
 							<?php // Suppresion d'un topic 
@@ -121,7 +125,7 @@ if (isset($_GET['deco']))
 								if (($_SESSION['administrateur'] > 0 && $donees['rang'] < 1 ) ||($_SESSION['administrateur'] == 2))// reservé à l'admin
 									{
 							?>
-										<form  action="http://localhost/Talk/index.php" method="post">
+										<form  action="index.php" method="post">
 											<input type="hidden" name="suppressionID" value="<?php echo $donees['id'];?>">
 											<input type="hidden" name="suppressionNom" value="<?php echo $donees['nom'];?>">
 											<input class="suppressionT" type="image" src="img/suprimer.jpg" value="Envoyer" >
@@ -142,7 +146,7 @@ if (isset($_GET['deco']))
 			</div>
 			<?php if (isset($_SESSION['pseudo'])){?> <!-- vérification de session pour permettre la création de topic -->
 			<div class="ajouterParent">	
-				<form action="http://localhost/Talk/index.php?topic=<?php echo$donees['nom']?>&page=1" method="post">
+				<form action="index.php?topic=<?php echo$donees['nom']?>&page=1" method="post">
 					<input name="nomtopic" placeholder="<?php echo $creerTopic ?>" type="text" maxlength="32">
 					<input name="rang" type="hidden" value="<?php echo $_SESSION['administrateur'] ?>">
 					<input class="ajouter" type="image" src="img/add.jpg" value="ajouter">
@@ -150,8 +154,8 @@ if (isset($_GET['deco']))
 			</div>		
 			<?php } ?>
 			<div class="recherche">
-			<form action="http://localhost/Talk/index.php" class="rechercheForm" method="post">
-				<input classe="rechercheChamp" style="width: 220px;" type="text" placeholder="<?php echo $recherche ?>" name="recherche">
+			<form action="index.php" class="rechercheForm" method="post">
+				<input class="champ" style="width: 220px;" type="text" placeholder="<?php echo $recherche ?>" name="recherche">
 				<input class="rechercheBtn" type="image" src="img/loupe.png" value="envoyer">
 			</form>	
 	</div>
@@ -167,7 +171,7 @@ if (isset($_GET['deco']))
 			</div>	
 
 				<!--Ci-dessous affichage des post depuis/vers la base de donné forum/post affichage des 5 derniers posts -->
-									<?php
+				<?php
  				$reponse -> closeCursor();
 				$reponse =$bdd -> prepare('SELECT * FROM posts WHERE topic = ? ORDER BY id ');
 				$reponse->execute(array($_GET['topic']));
@@ -175,7 +179,9 @@ if (isset($_GET['deco']))
 				$nb_page = $count / 5;
  				$inc = 0;
  				$aff = 0;
-
+ 				?>
+ 				<div id="rafraichissement">
+ 				<?php
  				while (($donees = $reponse -> fetch()) and ($aff < 5)) //on s'assure que l'on affiche que 5 posts maximum par pages
  				
 				{
@@ -202,11 +208,11 @@ if (isset($_GET['deco']))
 								if (($donees2['ID']==$_SESSION['id']) || ($_SESSION['administrateur'] == 1 && $donees['rang'] < 1) || ($_SESSION['administrateur'] == 2))
 								{
 								?>
-									<form  action="http://localhost/Talk/index.php?topic=<?php echo($_GET['topic'])?>&page=1" method="post"> <!-- suppression -->
+									<form  action="index.php?topic=<?php echo($_GET['topic'])?>&page=1" method="post"> <!-- suppression -->
 										<input type="hidden" name="suppression" value="<?php echo $donees['ID'];?>">
 										<input class="suppression" type="image" src="img/suprimer.jpg" value="supprimer" >
 									</form>
-									<form action="http://localhost/Talk/index.php?topic=<?php echo($_GET['topic'])?>&page=<?php echo($_GET['page']) ?>&edit=1#ancre_1"method="post"> <!-- edition -->
+									<form action="index.php?topic=<?php echo($_GET['topic'])?>&page=<?php echo($_GET['page']) ?>&edit=1#ancre_1"method="post"> <!-- edition -->
 										<input type="hidden" name="edit" value="<?php echo $donees['ID']; ?>">
 										<input class="editer" type="image" src="img/editer.png" value="editer">
 									</form>	
@@ -231,6 +237,22 @@ if (isset($_GET['deco']))
 					
 				}?>
 
+				<?php 
+				$page = 1;
+				while ($nb_page >0) 
+				{ ?>
+ 
+			<a href="index.php?topic=<?php echo($_GET['topic'])?>&page=<?php echo($page)?>"> 
+				<?php echo($page),'/'?>  
+			</a>
+				
+				<?php
+				$nb_page -- ;
+				$page++;
+
+				} ?>
+				</div>
+
 													<!-- ajout des post -->
 
 
@@ -242,7 +264,7 @@ if (isset($_GET['deco']))
 					{ 
 					?>
 
-					<form action="http://localhost/Talk/index.php?topic=<?php echo($_GET['topic'])?>&page=<?php echo($_GET['page']) ?>" method="post">
+					<form action="index.php?topic=<?php echo($_GET['topic'])?>&page=<?php echo($_GET['page']) ?>" method="post">
 						<textarea id="ancre_1" name="bilietM" rows="10" type="text"><?php echo $message ; ?></textarea>
 						<input type="hidden" name="id" value="<?php echo $id; ?>">
 						<input class="btn"  type="submit" value="Editer">
@@ -253,7 +275,7 @@ if (isset($_GET['deco']))
 				else 
 				{
 				?>
-					<form action="http://localhost/Talk/index.php?topic=<?php echo($_GET['topic'])?>&page=<?php echo($_GET['page']) ?>" method="post"> <!-- sinon champ vide -->
+					<form action="index.php?topic=<?php echo($_GET['topic'])?>&page=<?php echo($_GET['page']) ?>" method="post"> <!-- sinon champ vide -->
 						<textarea name="biliet" style="max-height: 175px; min-height: 175px; min-width: 453px; max-width: 453px;" rows="10" placeholder="<?php echo $ecrire ?>" type="text"></textarea>
 						<input name="rang" type="hidden" value="<?php echo $_SESSION['administrateur'] ?>">
 						<input class="btn"  type="submit" value="Submit">
@@ -264,20 +286,6 @@ if (isset($_GET['deco']))
 			}
 			?>
 				<!-- affichage des pages 1.2.3...... -->
-				<?php 
-				$page = 1;
-				while ($nb_page >0) 
-				{ ?>
- 
-			<a href="http://localhost/Talk/index.php?topic=<?php echo($_GET['topic'])?>&page=<?php echo($page)?>"> 
-				<?php echo($page),'/'?>  
-			</a>
-				
-				<?php
-				$nb_page -- ;
-				$page++;
-
-				} ?>
 
 			</article>	
 		</section>
@@ -318,7 +326,7 @@ if (isset($_GET['deco']))
 				</div> <?php
 			foreach ($tabRech as $key => $value)  
 				{
-					?><a href="http://localhost/Talk/index.php?topic=<?php echo $value ;?>&page=1"> 
+					?><a href="index.php?topic=<?php echo $value ;?>&page=1"> 
 				<?php echo $value;?></a></br> <?php
 			# code...
 		}
@@ -365,6 +373,21 @@ if (isset($_GET['deco']))
 	</div>
 	
 </div>
+<script src="jquery.js"></script>
+<script>
+
+setInterval (function() {
+
+	$('#rafraichissement').load('post_ajax.php',{
+		'topic': <?php echo json_encode($_GET['topic']); ?>,
+		'page': <?php echo json_encode($_GET['page']); ?>
+	})
+	
+}, 10000);
+
+
+
+</script>
 </body>
 </html>
 

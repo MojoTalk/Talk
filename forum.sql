@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 13 Mars 2015 à 10:00
+-- Généré le :  Mer 08 Avril 2015 à 16:32
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -33,14 +33,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `mail` varchar(255) NOT NULL,
   `administrateur` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
-
---
--- Contenu de la table `logs`
---
-
-INSERT INTO `logs` (`ID`, `pseudos`, `mdp`, `mail`, `administrateur`) VALUES
-(36, 'Administrateur', '7cc0aedeb280ebe3e40425c3f7b75de8ce27db06', 'youhou', 2);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 -- --------------------------------------------------------
 
@@ -56,14 +49,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `dates` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `rang` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=129 ;
-
---
--- Contenu de la table `posts`
---
-
-INSERT INTO `posts` (`biliet`, `ID`, `topic`, `nomp`, `dates`, `rang`) VALUES
-('Pour acceder au compte Administrateur Utilisez les logs\r\n</br></br>\r\nAdministrateur</br>\r\njesuislechef</br></br>\r\npensez a supprimer ce message une fois fais.</br></br>\r\n\r\nPour faire passer un profil en administrateur de rang 2 (le plus haut niveau) faites le grace Ã  la base de donnÃ© en transformant le champ administrateur de 0 a 2', 116, 'Reglement interieur', 'Admin', '2015-03-12 20:19:04', 1);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=150 ;
 
 -- --------------------------------------------------------
 
@@ -76,14 +62,7 @@ CREATE TABLE IF NOT EXISTS `topic` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `rang` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=61 ;
-
---
--- Contenu de la table `topic`
---
-
-INSERT INTO `topic` (`nom`, `id`, `rang`) VALUES
-('Reglement interieur', 60, 2);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=72 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

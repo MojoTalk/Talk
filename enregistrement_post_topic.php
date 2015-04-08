@@ -2,9 +2,14 @@
 
 if(isset($_POST['biliet']))
 {
+	$str = $_POST['biliet'];
+	$str = strip_tags($str, '</br><br>');
+	$order = array("\r\n", "\n", "\r");
+	$replace = '</br>';
+	$newstr = str_replace($order, $replace, $str);
 	$req =$bdd->prepare('INSERT INTO posts(biliet, topic, nomp, rang) Values(:biliet, :topic, :nomp, :rang)');
 	$req->execute(array(
-	'biliet' => $_POST['biliet'],
+	'biliet' => $newstr,
 	'topic' => $_GET['topic'],
 	'nomp' => $_SESSION['id'],
 	'rang' => $_SESSION['administrateur']
@@ -32,7 +37,7 @@ if(isset($_POST['nomtopic']))
 
 		else
 		{
-			header('location: http://localhost/Talk/index.php?nomTopicUtilise=true');
+			header('location: index.php?nomTopicUtilise=true');
 		}	
 }
 

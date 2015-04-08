@@ -41,7 +41,7 @@ include("cible.php");
 		?>
 
 
-		<form action="http://localhost/Talk/index.php" method="post">
+		<form action="index.php" method="post">
 			<li><label>
 				<input name="pseudoc" placeholder ="<?php echo $pseudo; ?>" type="text"></br></br>
 			</label></li>
@@ -55,7 +55,7 @@ include("cible.php");
 	</ul>
 		<div><img src="img/minion.jpg" class="minion"></div>
 		<p class="retourTxt"><?php echo $retourAc; ?></p>
-		<form action="http://localhost/Talk/index.php">
+		<form action="index.php">
 			<input type="image" src="img/BtnRetour.jpg" value="Envoyer" class="retour">
 		</form>
 	</section>

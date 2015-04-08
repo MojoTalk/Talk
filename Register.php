@@ -57,7 +57,7 @@ require_once("addresse.php");
 			}
 			?>
 	<ul class="liste">
-		<form action="http://localhost/Talk/cible.php" method="post">
+		<form action="cible.php" method="post">
 			<li><label for="nom">
 				<input name="pseudo" placeholder ="<?php echo $pseudoEnr; ?>" type="text"></br></br>
 			</label></li>
@@ -77,7 +77,7 @@ require_once("addresse.php");
 	</ul>
 		<div><img src="img/mignon1.jpeg" class="mignon"></div>
 		<p class="retourTxt"><?php echo $retourAc; ?></p>
-		<form action="http://localhost/Talk/index.php">
+		<form action="index.php">
 			<input type="image" src="img/BtnRetour.jpg" value="Envoyer" class="retour">
 		</form>
 	</section>

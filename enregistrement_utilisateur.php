@@ -75,7 +75,7 @@ if(isset($_POST['mdp']))
 				}
 				else
 				{
-					header("location: http://localhost/Talk/register.php?mailE=0");
+					header("location: register.php?mailE=0");
 				}
 			}
 			else 
@@ -85,28 +85,28 @@ if(isset($_POST['mdp']))
 				$count = $req->rowCount(); 
 					if ($count == 1)
 					{
-						header('location: http://localhost/Talk/register.php?pseudoU=0');	
+						header('location: register.php?pseudoU=0');	
 					}
 					else
 					{
-						header('location: http://localhost/Talk/register.php?mailU=0');
+						header('location: register.php?mailU=0');
 					}
 				$req->closeCursor();
 			}
 		}
 		else if ($countpseudo < 6) 
 		{
-			header('location: http://localhost/Talk/register.php?pseudo=0');
+			header('location: register.php?pseudo=0');
 		}
 		else
 		{
-			header('location: http://localhost/Talk/register.php?mdp=0');
+			header('location: register.php?mdp=0');
 		}
 		
 	}
 	else
 	{
-		header('location: http://localhost/Talk/register.php?mdpF=0');
+		header('location: register.php?mdpF=0');
 	}
 }
 
