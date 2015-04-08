@@ -1,0 +1,45 @@
+// index.php
+	//titres et liens
+BONJOUR=Welcome
+BONJOURDC=Welcome in Talk
+// utile sur la page de connexion
+CONNEXION=Sign in
+// utile sur la page d'enregistrement
+SENREGISTRER=Register now
+SEDECONNECTER=Sign out
+DISCUTION=Recent Discution
+CHOIX=Choose a topic on your left
+ERREURTOPIC=Error : Name of topic already use.
+ACCUEIL=Reception
+	// placeholder et valeur(boutons)
+CREERTOPIC=topic name
+ECRIRE=write here
+ENVOYER=Send
+RECHERCHE=search...
+// Register.php
+	// placeholder
+PSEUDOENR=pseudo 6ch min
+MOTDEPASSEENR=Password 8ch min
+MOTDEPASSEENRCONF=Password confirmation
+ADDRESSEMAIL=mail address
+	//erreur
+ERREURPSEUDOUSE=Pseudo use
+ERREURPSEUDOCOURT=Pseudo too short ( 6caractère minimum )
+ERREURMDPCOURT=Password too short
+ERREURMDPDIF=Password do not match
+ERREURMAILUSE=Mail address is already use
+//connexion.php
+	//erreur
+ERREURCONNECT=Error : Bad pseudo or password
+ENREGISTREMENTREUSSI=you\'ve been register succesfuly ! Please sign in
+	//placeholder
+PSEUDO=pseudo
+MOTDEPASSE=password
+//page liste membre
+LISTEMEMBRE=Membre list
+DROITADMIN=right of administration lvl
+UTILISATEUR=The user 
+ESTADMIN=is now a director rank 1
+NESTPLUSADMI =is no longer a director of rank 1
+// page multiple 
+RETOURAC=Return to reception

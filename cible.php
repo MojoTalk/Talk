@@ -1,7 +1,5 @@
 <?php
-define("NAMEDB",     "mysql:host=localhost;dbname=forum");
-define("IDENTIFIANTDB",     "root");
-define("MDPDB",     "");
+require_once("addresse.php");
 
 try
 {

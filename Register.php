@@ -1,7 +1,7 @@
 <?php
 
 
-
+require_once("addresse.php");
 
  ?> 
 
@@ -49,6 +49,12 @@
 				<p class="tropCourt"><?php echo $erreurMdpDif; ?></p>
 			<?php
 			}
+			else if(isset($_GET['mailE']))
+			{
+			?>
+				<p class="tropCourt"><?php echo $erreurMailFaux; ?></p>
+			<?php
+			}
 			?>
 	<ul class="liste">
 		<form action="http://localhost/Talk/cible.php" method="post">
@@ -71,7 +77,7 @@
 	</ul>
 		<div><img src="img/mignon1.jpeg" class="mignon"></div>
 		<p class="retourTxt"><?php echo $retourAc; ?></p>
-		<form action="http://localhost/talk/index.php">
+		<form action="http://localhost/Talk/index.php">
 			<input type="image" src="img/BtnRetour.jpg" value="Envoyer" class="retour">
 		</form>
 	</section>

@@ -4,7 +4,7 @@ if (isset($_GET['error']))
 {
 	header("HTTP/1.0 401 Unauthorized");	
 }
-
+require_once("addresse.php");
 include("traduction.php");
 include("cible.php");
 
@@ -55,7 +55,7 @@ include("cible.php");
 	</ul>
 		<div><img src="img/minion.jpg" class="minion"></div>
 		<p class="retourTxt"><?php echo $retourAc; ?></p>
-		<form action="http://localhost/talk/index.php">
+		<form action="http://localhost/Talk/index.php">
 			<input type="image" src="img/BtnRetour.jpg" value="Envoyer" class="retour">
 		</form>
 	</section>

@@ -3,7 +3,7 @@
 $lang = "fr";
 $testLang=strpos($_SERVER['HTTP_ACCEPT_LANGUAGE'],$lang);
 
-if ($testLang==5) {
+if ($testLang==1) {
 
 //fr
 	// index.php
@@ -37,6 +37,7 @@ if ($testLang==5) {
 	$erreurMdpCourt = 'Mot de passe trop court';
 	$erreurMdpDif = 'Les mots de passe ne concordent pas';
 	$erreurMailUse = 'Adresse mail déjà utilisé';
+	$erreurMailFaux = 'L\'adresse mail a un format incorrect';
  
 	//connexion.php
 		//erreur
@@ -93,6 +94,7 @@ else
 	$erreurMdpCourt = 'Password too short';
 	$erreurMdpDif = 'Password do not match';
 	$erreurMailUse = 'Mail address is already use';
+	$erreurMailFaux = 'incorrect mail form';
  
 	//connexion.php
 		//erreur

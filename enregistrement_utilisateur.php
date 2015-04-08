@@ -6,7 +6,7 @@
 
 
 //  ci dessous ligne des logs
-
+require_once ('addresse.php');
 
 if(isset($_POST['mdp']))
 {
@@ -15,7 +15,42 @@ if(isset($_POST['mdp']))
 	{
 		$countmdp =strlen($_POST['mdp']);
 		$countpseudo =strlen($_POST['pseudo']);
-		if ($countmdp >= 8 && $countpseudo >= 6 ) {
+		function testchar ($char, $pos = 0)
+					{				
+						$test=strpos($_POST['mail'], $char, $pos);
+						return $test;
+					}
+		function testmail ()
+		{
+			
+			if ((testchar('@')!== FALSE) && (testchar('.')!== FALSE)) 
+			{
+				if (testchar('.') < (testchar('@')+3))
+				{
+					if(testchar('.', testchar('@')+3)!== false)
+					{
+						$testPosRes = true;
+					}
+					else
+					{
+						$testPosRes = false;
+					}
+
+				}
+				else
+				{
+					$testPosRes = true;
+				}		
+			}
+			else
+				{
+					$testPosRes = false;
+				}
+
+			return $testPosRes;
+		}
+		if ($countmdp >= 8 && $countpseudo >= 6) 
+		{
 			
 		
 
@@ -25,6 +60,8 @@ if(isset($_POST['mdp']))
 			$count = $req->rowCount(); 
 			if ($count == 0)
 			{
+				if (testmail() === true)
+				{
 				$pass_hache = sha1($_POST['mdp']);
 				$req =$bdd->prepare('INSERT INTO logs(pseudos, mdp, mail) Values(:pseudos, :mdp, :mail)');
 				$req->execute(array(
@@ -35,6 +72,11 @@ if(isset($_POST['mdp']))
 				));
 				$req->closeCursor();
 				header('location: connexion.php?enregistre=1');
+				}
+				else
+				{
+					header("location: http://localhost/Talk/register.php?mailE=0");
+				}
 			}
 			else 
 			{
@@ -43,28 +85,28 @@ if(isset($_POST['mdp']))
 				$count = $req->rowCount(); 
 					if ($count == 1)
 					{
-						header('location: http://localhost/talk/register.php?pseudoU=0');	
+						header('location: http://localhost/Talk/register.php?pseudoU=0');	
 					}
 					else
 					{
-						header('location: http://localhost/talk/register.php?mailU=0');
+						header('location: http://localhost/Talk/register.php?mailU=0');
 					}
 				$req->closeCursor();
 			}
 		}
 		else if ($countpseudo < 6) 
 		{
-			header('location: http://localhost/talk/register.php?pseudo=0');
+			header('location: http://localhost/Talk/register.php?pseudo=0');
 		}
 		else
 		{
-			header('location: http://localhost/talk/register.php?mdp=0');
+			header('location: http://localhost/Talk/register.php?mdp=0');
 		}
 		
 	}
 	else
 	{
-		header('location: http://localhost/talk/register.php?mdpF=0');
+		header('location: http://localhost/Talk/register.php?mdpF=0');
 	}
 }
 

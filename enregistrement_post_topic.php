@@ -32,7 +32,7 @@ if(isset($_POST['nomtopic']))
 
 		else
 		{
-			header('location: http://localhost/talk/index.php?nomTopicUtilise=true');
+			header('location: http://localhost/Talk/index.php?nomTopicUtilise=true');
 		}	
 }
 
